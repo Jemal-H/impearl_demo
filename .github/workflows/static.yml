@@ -31,19 +31,22 @@ jobs:
         with:
           node-version: 18
 
+      # ✅ Use npm install instead of npm ci to avoid missing lockfile error
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
+      # 🔧 Build your React app
       - name: Build React app
         run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # ✅ Upload only the build folder (where React outputs index.html, CSS, JS)
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './build'   # 👈 React's build output folder
+          path: './build'
 
       - name: Deploy to GitHub Pages
         id: deployment
