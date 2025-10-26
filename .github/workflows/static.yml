@@ -1,5 +1,5 @@
-# Workflow for building and deploying a React app to GitHub Pages
-name: Deploy React App to GitHub Pages
+# Workflow for building and deploying the React frontend to GitHub Pages
+name: Deploy React Frontend to GitHub Pages
 
 on:
   push:
@@ -31,18 +31,18 @@ jobs:
         with:
           node-version: 18
 
-      # ✅ Use npm install instead of npm ci to avoid missing lockfile error
+      # 👇 Install dependencies for your React app (frontend)
       - name: Install dependencies
         run: npm install
 
-      # 🔧 Build your React app
+      # 👇 Build your React app into the /build folder
       - name: Build React app
         run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # ✅ Upload only the build folder (where React outputs index.html, CSS, JS)
+      # 👇 Upload the build output for deployment
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
